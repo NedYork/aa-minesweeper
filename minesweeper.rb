@@ -11,11 +11,17 @@ class Minesweeper
 
   # iterate through the board and print out the corresponding symbol
   def render
+    game_over = false
     game.grid.each do |row|
       row_output = []
       row.each do |el|
         if el.revealed
-          el_output = "_" #has to be changed
+          if el.has_bomb
+            el_output = "X"
+            game_over = true
+          else
+            el_output = "_" #has to be changed
+          end
         else
           el_output = el.has_flag ? "F" : "*"
         end
@@ -23,6 +29,7 @@ class Minesweeper
       end
       p row_output.join(" ")
     end
+    # call game_over method if game_over == true
   end
 
   # Prompt user for position
@@ -35,6 +42,8 @@ class Minesweeper
     [position, action]
   end
 
+  # update position @revealed to true for @has_flag to opposite value
+  # render board
   def update_pos
     position, action = prompt
     x, y = position
@@ -42,14 +51,12 @@ class Minesweeper
     when "R"
       game.grid[x][y].revealed = true
     when "F"
-      game.grid[x][y].has_flag = !game.grid[x][y].has_flag
+      game.grid[x][y].has_flag = !game.grid[x][y].has_flag unless game.grid[x][y].revealed
     end
   end
 
 end
 
-# update position @revealed to true
-# render board
 # When rendering that new position,
 # Determine whether it has a bomb, if so display correct char
 # If it doesn't have a bomb,
