@@ -2,14 +2,15 @@ require_relative "board.rb"
 
 class Tile
 
-  attr_reader :has_bomb, :board
+  attr_reader :has_bomb, :board, :pos
   attr_accessor :has_flag, :revealed
 
-  def initialize(board)
+  def initialize(board, pos)
     @has_bomb = false
     @has_flag = false
     @revealed = false
     @board = board
+    @pos = pos
   end
 
   def reveal
