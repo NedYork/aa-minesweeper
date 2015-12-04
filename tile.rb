@@ -2,8 +2,8 @@ require_relative "board.rb"
 
 class Tile
 
-  attr_reader :has_bomb, :board, :pos
-  attr_accessor :has_flag, :revealed
+  attr_reader :board, :pos
+  attr_accessor :has_flag, :revealed, :has_bomb
 
   def initialize(board, pos)
     @has_bomb = false
