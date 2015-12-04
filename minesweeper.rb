@@ -20,7 +20,17 @@ class Minesweeper
             el_output = "X"
             game_over = true
           else
-            el_output = "_" #has to be changed
+            el_output = "_"
+            el.total_num_neighbor_bombs
+            #has to be changed
+            #find positions of neighbors
+            #ask each neighbor if has bomb
+            #count total number of bombs
+            #output that integer instead of flag, star, or _
+
+
+
+
           end
         else
           el_output = el.has_flag ? "F" : "*"
@@ -50,6 +60,8 @@ class Minesweeper
     case action
     when "R"
       game.grid[x][y].revealed = true
+
+
     when "F"
       game.grid[x][y].has_flag = !game.grid[x][y].has_flag unless game.grid[x][y].revealed
     end
@@ -59,6 +71,8 @@ end
 
 # When rendering that new position,
 # Determine whether it has a bomb, if so display correct char
+
+
 # If it doesn't have a bomb,
 # find its neighbors and ask them if they have bombs
 # calculate the total number of bombs
